@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include <time.h>
+#include <stdlib.h>
+void swap(int &b, int &c){
+	int t = b; 
+	b = c;
+	c = t;
+}
+void taoMang(int a[], int n){
+	for(int i=0; i<n; i++)
+		a[i] = rand()%(0-100);
+}
+void xuatMang(int a[], int n){
+	printf("\n---------------------\n");
+	for(int i=0; i<n; i++)
+		printf("\t %d", a[i]);
+}
+void insertionSort(int a[], int n){
+	int pos;
+	for(int i=0; i<n; i++){
+		pos = i;
+		while(pos > 0 && a[pos] < a[pos-1]){
+			swap(a[pos], a[pos-1]);
+			pos--;
+		}
+	}
+}
+
+int main() {
+	srand(time(NULL));
+	int n;
+	printf("nhap n: "); scanf("%d", &n);
+	int a[n];
+	taoMang(a,n);
+	xuatMang(a,n);
+	clock_t t1 = clock();
+	insertionSort(a, n);
+	clock_t t2 = clock();
+	xuatMang(a,n);
+	printf("\nThoi gian thuc thi: %f", (float)(t2-t1));
+	return 0;
+}
